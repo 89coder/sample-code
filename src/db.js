@@ -8,7 +8,7 @@ import mongoose from 'mongoose';
 
 const connectToDb = async()=> {
   try {
-    await mongoose.connect('mongodb+srv://expoundsolution:JOJPDwuGus4wwd3w@cluster1.5a0uw.mongodb.net/filedb');
+    await mongoose.connect('process.env.mongo_uri');
     console.log("connect to database");
   } catch (error) {
     console.error("connection failed");
