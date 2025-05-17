@@ -1,0 +1,42 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "ec80201cb349e7912e241a0e8efaae0f"
+name = "Ests Inventory Sync"
+handle = "ests-inventory-sync"
+application_url = "https://inventorysync.expoundcoderz.in/"
+embedded = true
+
+[build]
+dev_store_url = "ests-pra.myshopify.com"
+include_config_on_deploy = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "read_products,write_products,read_locations"
+use_legacy_install_flow = true
+
+[auth]
+redirect_urls = [
+  "https://inventorysync.expoundcoderz.in/",
+  "https://inventorysync.expoundcoderz.in/callback",
+  "https://inventorysync.expoundcoderz.in/auth/shopify/callback",
+  "https://inventorysync.expoundcoderz.in/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2023-10"
+
+  [[webhooks.subscriptions]]
+  uri = "/customer_data_erasure"
+  compliance_topics = [ "customers/redact" ]
+
+  [[webhooks.subscriptions]]
+  uri = "/customer_data_request"
+  compliance_topics = [ "customers/data_request" ]
+
+  [[webhooks.subscriptions]]
+  uri = "/shop_data_erasure"
+  compliance_topics = [ "shop/redact" ]
+
+[pos]
+embedded = false
